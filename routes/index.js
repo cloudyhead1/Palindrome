@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index',{
-    phrase: "taco Cat"
+    phrase: "taco cat"
   } );
 });
 
@@ -22,7 +22,31 @@ function checkPalindrome(phrase){
   let temp = phrase.split("");
   temp = temp.reverse();
   temp = temp.join("")
-  if (phrase.toLowerCase().replace("", "") === temp.toLowerCase().replace("", "") ){
+  if (phrase.toLowerCase().replace( '"', "") === temp.toLowerCase().replace('"', "") ){
+    return true
+  }
+  if (phrase.toLowerCase().replace(".", "") === temp.toLowerCase().replace(".", "") ){
+    return true
+  }
+  if (phrase.toLowerCase().replace(",", "") === temp.toLowerCase().replace(",", "") ){
+    return true
+  }
+  if (phrase.toLowerCase().replace(":", "") === temp.toLowerCase().replace(":", "") ){
+    return true
+  }
+  if (phrase.toLowerCase().replace(";", "") === temp.toLowerCase().replace(";", "") ){
+    return true
+  }
+  if (phrase.toLowerCase().replace("!", "") === temp.toLowerCase().replace("!", "") ){
+    return true
+  }
+  if (phrase.toLowerCase().replace("?", "") === temp.toLowerCase().replace("?", "") ){
+    return true
+  }
+  if (phrase.toLowerCase().replace("'", "") === temp.toLowerCase().replace("'", "") ){
+    return true
+  }
+  if (phrase.toLowerCase().replace(" ", "") === temp.toLowerCase().replace(" ", "") ){
     return true
   }
   else {
@@ -30,8 +54,13 @@ function checkPalindrome(phrase){
   }
 }
 function getResultDescription (phrase){
+  let temp = phrase.split("");
+  temp = temp.reverse();
+  temp = temp.join("")
   if (checkPalindrome(phrase)) {
-    return `${phrase} is a palindrome.`
+    return `${phrase} is a palindrome.
+    The reverse is ${temp}`
   }
-  return `${phrase} is not a palindrome.`
+  return `${phrase} is not a palindrome.
+  The reverse is ${temp}`
 }
